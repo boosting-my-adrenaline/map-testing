@@ -12,14 +12,17 @@ import { Location } from '../../redux/transportation/transportation.types'
 import { polyline } from '../../data/polyline'
 import { useActions } from '../../hooks/useAction'
 
+import polygon from '@mapbox/polyline'
+
 const image1 = require('../../static/image1.png')
 const image2 = require('../../static/image2.png')
 
 interface IProps {
   width: number
+  lg?: boolean
 }
 
-export const MapContainer: React.FC<IProps> = ({ width }) => {
+export const MapContainer: React.FC<IProps> = ({ width, lg }) => {
   const {
     currentPair,
     pairs,
@@ -79,8 +82,11 @@ export const MapContainer: React.FC<IProps> = ({ width }) => {
     >
       <Popup position={[location.latitude, location.longitude]}>
         <div className={``}>
-          <h1 className={`text-[14px] font-[700]`}>{location.city}</h1>
-          <p> {location.state}</p>
+          <h1 className={`text-[14px] font-[700]`}>
+            {' '}
+            {location.state}, {location.city}
+          </h1>
+          <p></p>
         </div>
       </Popup>
     </Marker>
@@ -90,7 +96,7 @@ export const MapContainer: React.FC<IProps> = ({ width }) => {
 
   return (
     <div
-      style={{ width: width }}
+      style={{ width: lg ? width : `100%` }}
       className={`flex h-full shrink-0 flex-grow-0 items-center justify-center bg-sky-50 `}
     >
       {/* {loading && (
@@ -104,7 +110,7 @@ export const MapContainer: React.FC<IProps> = ({ width }) => {
       <MapContainerLeafLet
         center={[35.58544, -93.2578]}
         zoom={5}
-        className={`h-screen w-[90vw]`}
+        className={`h-screen ${lg ? `w-[90vw]` : `w-screen`}`}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

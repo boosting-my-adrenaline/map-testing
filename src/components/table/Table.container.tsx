@@ -7,11 +7,12 @@ import { useActions } from '../../hooks/useAction'
 
 interface IProps {
   width: number
+  lg?: boolean
 }
 
 export type Filter = `newest` | `oldest`
 
-export const TableContainer: React.FC<IProps> = ({ width }) => {
+export const TableContainer: React.FC<IProps> = ({ width, lg }) => {
   const { currentPair, pairs, locations } = useTypedSelector((state) => state)
 
   const [filter, setFilter] = useState<Filter>(`newest`)
@@ -37,15 +38,27 @@ export const TableContainer: React.FC<IProps> = ({ width }) => {
 
   return (
     <div
-      style={{ width: width }}
-      className={`z-[500] flex  shrink-0 flex-col items-center justify-start border-r border-sky-600 bg-custom1  shadow-[0px_0px_14px_7px_rgba(0,0,0,0.5)]`}
+      style={{
+        width: lg ? width : `100%`,
+        height: lg ? `` : `300px `,
+      }}
+      className={`z-[500] flex shrink-0 flex-col items-start  ${
+        lg && `border-r border-sky-600`
+      }  bg-custom1  shadow-[0px_0px_14px_7px_rgba(0,0,0,0.5)]`}
     >
       {/* <TableSort filter={filter} setFilter={setFilter} /> */}
 
       {/* <AnimateSharedLayout> */}
+      {lg || (
+        <div
+          className={`from h-[10px] w-full bg-gradient-to-b pb-[6px] `}
+        ></div>
+      )}
       <div
         // layout
-        className={`  grid w-full  gap-[20px]  overflow-y-scroll  p-[20px]`}
+        className={`  grid w-full  gap-[20px]  overflow-y-scroll  ${
+          lg ? `p-[20px]` : `p-[10px_15px_15px]`
+        }`}
         style={{
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
         }}

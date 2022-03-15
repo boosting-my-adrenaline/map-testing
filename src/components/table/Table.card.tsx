@@ -108,7 +108,9 @@ export const TableCard: React.FC<IProps> = ({
               animate={{
                 marginLeft: isSelected ? -5 : 0,
               }}
-              className={` w-full`}
+              className={` w-full ${
+                !isSelected ? `text-emerald-200` : `text-emerald-900`
+              }`}
             >
               {' '}
               {from.city}
@@ -148,7 +150,14 @@ export const TableCard: React.FC<IProps> = ({
           <div className={`flex  h-[28px] w-full p-[1px_5px]`}>
             <motion.div animate={{ width: isSelected ? 30 : 0 }} />
 
-            <span className={`w-full`}> {to.city}</span>
+            <span
+              className={`w-full  ${
+                !isSelected ? `text-red-100` : `text-red-900`
+              }`}
+            >
+              {' '}
+              {to.city}
+            </span>
             <motion.div
               animate={{
                 scale: !isSelected ? 0 : 1,
