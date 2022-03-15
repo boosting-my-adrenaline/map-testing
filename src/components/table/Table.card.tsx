@@ -53,15 +53,15 @@ export const TableCard: React.FC<IProps> = ({
   }
 
   const handleChangeFrom = (from: number) => {
-    changePair(id, from - 1, to.rank - 1)
+    changePair(id, from, to.rank)
   }
 
   const handleChangeTo = (to: number) => {
-    changePair(id, from.rank - 1, to - 1)
+    changePair(id, from.rank, to)
   }
 
   const swap = () => {
-    changePair(id, to.rank - 1, from.rank - 1)
+    changePair(id, to.rank, from.rank)
   }
 
   useEventListener(`click`, handleClickOutside)
