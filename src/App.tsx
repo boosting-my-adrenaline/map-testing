@@ -72,3 +72,12 @@ function App() {
 }
 
 export default App
+
+// scp root@31.184.253.158:/var/www/elisium.space /build
+//scp /build root@31.184.253.158:/var/www/elisium.space
+// sshfs root@31.184.253.158:/var/www/elisium.space /build
+//scp /build root@31.184.253.158:/var/www/elisium.space
+//scp  -r /build root@31.184.253.158:/var/www/elisium.space
+
+// scp -r root@31.184.253.158:/var/www/elisium.space /build
+// scp root@31.184.253.158:/var/www/elisium.space /build
